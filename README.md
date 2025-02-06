@@ -27,12 +27,12 @@
 
 - Установленная **Java 17** или выше.
 - Локально установленный **MongoDB** (или подключение к удаленному серверу MongoDB).
-- **Gradle** (с настройкой Kotlin DSL).
+- **Gradle** (с настройкой Kotlin ).
 
 ## Настройка и запуск
 
 ### 1. Клонируйте репозиторий
 
 ```bash
-git clone https://github.com/<ваш-аккаунт>/task-tracker.git
+git clone [https://github.com/sergiologino/taskTrackerWebFlux.git]
 cd task-tracker
