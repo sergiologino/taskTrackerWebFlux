@@ -36,3 +36,5 @@
 ```bash
 git clone [https://github.com/sergiologino/taskTrackerWebFlux.git]
 cd task-tracker
+### 2. Запуск spring-doc Swagger:
+http://localhost:8080/webjars/swagger-ui/index.html
