@@ -6,7 +6,7 @@ spring:
         database: tasktracker
         url: mongodb://localhost:27017
 
-  springdoc:
+springdoc:
     api-docs:
       path: /api-docs
     swagger-ui:

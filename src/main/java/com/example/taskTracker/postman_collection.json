@@ -1,0 +1,127 @@
+{
+  "info": {
+    "name": "Task Tracker",
+    "_postman_id": "a31b8fa0-0001-11ee-be56-0242ac120002",
+    "description": "Проверка регистрации и доступа по ролям с Basic Auth",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Регистрация нового пользователя (ROLE_USER)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"ivan123\",\n  \"email\": \"ivan@example.com\",\n  \"password\": \"123456\",\n  \"roles\": [\"ROLE_USER\"]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["users"]
+        }
+      }
+    },
+    {
+      "name": "Регистрация менеджера (ROLE_MANAGER)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"manager1\",\n  \"email\": \"manager@example.com\",\n  \"password\": \"adminpass\",\n  \"roles\": [\"ROLE_MANAGER\"]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["users"]
+        }
+      }
+    },
+    {
+      "name": "Получить список задач (USER и MANAGER)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["tasks"]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "ivan123", "type": "string" },
+            { "key": "password", "value": "123456", "type": "string" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Создать задачу (только MANAGER)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Task\",\n  \"description\": \"Check security\",\n  \"status\": \"TODO\",\n  \"authorId\": \"ID_ivan123\",\n  \"assigneeId\": \"ID_ivan123\",\n  \"observerIds\": []\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["tasks"]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "manager1", "type": "string" },
+            { "key": "password", "value": "adminpass", "type": "string" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Получить всех пользователей (MANAGER или USER)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["users"]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "ivan123", "type": "string" },
+            { "key": "password", "value": "123456", "type": "string" }
+          ]
+        }
+      }
+    }
+  ]
+}

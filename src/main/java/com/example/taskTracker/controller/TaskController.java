@@ -22,6 +22,7 @@ import reactor.core.publisher.Mono;
 public class TaskController {
     private final TaskService taskService;
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @GetMapping
     @Operation(summary = "Получить все задачи", description = "Возвращает список всех задач с вложенными сущностями автора, исполнителя и наблюдателей")
     @ApiResponses({
@@ -32,6 +33,7 @@ public class TaskController {
         return taskService.findAllTasks();
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @GetMapping("/{id}")
     @Operation(summary = "Получить задачу по ID", description = "Возвращает задачу с вложенными сущностями автора, исполнителя и наблюдателей")
     @ApiResponses({
@@ -45,6 +47,7 @@ public class TaskController {
         return taskService.findTaskById(id);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @PostMapping
     @Operation(summary = "Создать задачу", description = "Создает новую задачу")
     @ApiResponses({
@@ -76,6 +79,7 @@ public class TaskController {
         return taskService.createTask(task);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @PutMapping("/{id}")
     @Operation(summary = "Обновить задачу", description = "Обновляет информацию о задаче на основе ID")
     @ApiResponses({
@@ -109,6 +113,7 @@ public class TaskController {
         return taskService.updateTask(id, task);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить задачу", description = "Удаляет задачу на основе ID")
     @ApiResponses({
@@ -122,6 +127,7 @@ public class TaskController {
         return taskService.deleteTask(id);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @PatchMapping("/{id}/add-observer/{observerId}")
     @Operation(summary = "Добавить наблюдателя в задачу", description = "Добавляет наблюдателя в список наблюдателей задачи")
     @ApiResponses({

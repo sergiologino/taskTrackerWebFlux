@@ -21,6 +21,14 @@ public class UserService {
     }
 
     public Mono<User> createUser(User user) {
+
+
+        //  роль по умолчанию
+        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            user.setRoles(Set.of(RoleType.ROLE_USER));
+        }
+
+
         return userRepository.save(user);
     }
 

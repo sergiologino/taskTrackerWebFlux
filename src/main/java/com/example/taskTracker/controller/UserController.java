@@ -19,6 +19,7 @@ import reactor.core.publisher.Mono;
 public class UserController {
     private final UserService userService;
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @GetMapping
     @Operation(summary = "Получить всех пользователей", description = "Возвращает список всех пользователей")
     @ApiResponses({
@@ -29,6 +30,7 @@ public class UserController {
         return userService.findAllUsers();
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @GetMapping("/{id}")
     @Operation(summary = "Получить пользователя по ID", description = "Возвращает пользователя на основе ID")
     @ApiResponses({
@@ -41,6 +43,7 @@ public class UserController {
             @PathVariable String id) {
         return userService.findUserById(id);
     }
+
 
     @PostMapping
     @Operation(summary = "Создать пользователя", description = "Создает нового пользователя")
@@ -64,6 +67,7 @@ public class UserController {
         return userService.createUser(user);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @PutMapping("/{id}")
     @Operation(summary = "Обновить пользователя", description = "Обновляет информацию о пользователе на основе ID")
     @ApiResponses({
@@ -88,6 +92,7 @@ public class UserController {
         return userService.updateUser(id, user);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить пользователя", description = "Удаляет пользователя на основе ID")
     @ApiResponses({
