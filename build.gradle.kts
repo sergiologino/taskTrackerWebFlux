@@ -31,6 +31,7 @@ dependencies {
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 
 	implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.2.0")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 
 
 	compileOnly("org.projectlombok:lombok")
